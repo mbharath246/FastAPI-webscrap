@@ -20,7 +20,7 @@ def get_all_users(db: Session = Depends(get_db)):
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Details Not Found")
 
 
-@router.get('/get-user-id', status_code=status.HTTP_200_OK)
+@router.get('/get-user-id', response_model=models.User, status_code=status.HTTP_200_OK)
 def get_user_by_id(id:int, db:Session = Depends(get_db)):
     user = db.query(schemas.User).filter(schemas.User.id == id).first()
     if not user:
