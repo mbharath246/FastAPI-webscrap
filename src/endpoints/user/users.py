@@ -32,7 +32,7 @@ def get_user_by_id(id:int, db:Session = Depends(get_db)):
 def create_user(request: models.UserIn, db: Session = Depends(get_db)):
     username = db.query(schemas.User).filter(schemas.User.username == request.username).first()
     if username:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="User Already Exists")
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Username Already Exists")
     password = hashing.get_hashed_password(request.password)
     new_user = schemas.User(name=request.name,phone=request.phone,username=request.username.lower(),password=password)
     db.add(new_user)
