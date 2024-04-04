@@ -1,0 +1,24 @@
+version: '2.25'
+
+services:
+  web:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+  db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=bharath
+      - POSTGRES_DB=scrap
+    ports:
+      - 5433:5432
+    volumes:
+      - postgres-data:/var/lib/postgres/data
+  
+volumes:
+  postgres-data:
