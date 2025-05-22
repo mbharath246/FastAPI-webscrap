@@ -68,7 +68,7 @@
 Endpoint: `http://localhost:8000/blogs/5` 5 represents 5 pages scrapping change if you want  
 Method: `POST`
 
-#### Request Body
+#### Response Body
 
 ```json
 {
